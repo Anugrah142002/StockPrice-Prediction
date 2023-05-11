@@ -27,3 +27,24 @@ To preprocess the relevant data in order to make it suitable for sentiment analy
 We also created a word cloud using the WordCloud library to get a visual representation of the most frequently used words in the relevant tweets. This helped better understand what the relevant words of the sentiment analysis were.
 
 ![image](https://github.com/Anugrah142002/StockPrice-Prediction/assets/96532336/fd50a871-459e-4153-b89f-2f41a98a4a50)
+
+# Sentiment Analysis
+For the Sentiment Analysis, we created two functions called getPolarity and getSubjectivity which return the Polarity and Subjectivity respectively. For this, we used the TextBlob library, which contains an API suited for sentiment analysis. For our sentiment analysis, we considered the parameter Polarity because it showed the extent of sentiment conveyed in a message.( on a scale of -1 to 1, with zero implying neutral sentiment, a positive score meaning a positive sentiment, and similarly a negative score implying a negative sentiment.)
+
+We also created a getAnalysis function to show whether each input was negative, positive or neutral. This gave us a clue about the general sentiment of a tweet. We plotted a graph of Polarity vs. Timestamp to get an idea of the changing sentiment with time using matplotlib.
+
+![image](https://github.com/Anugrah142002/StockPrice-Prediction/assets/96532336/2887ea81-dbe7-4776-8a57-4bebba041837)
+
+# Prediction
+After training our sentiment analysis classifier and completing the preprocessing for the Stock Data , we created a feature matrix which contains the following features
+
+ - Polarity of tweets
+ - Adjusted Close price
+ - HLPCT
+ - PCTchange
+ - Volume
+
+After this we divided the dataset into 2 parts, one(80%) was used for training the hypothesis function and the remaining 20% was used for testing how well the hypothesis generalizes to new data. This was done using Keras API which is a part of TensorFlow, and the initial degree of the hypothesis function that we chose was 1(Linear regression). However, if this doesn't work out well, we would use some other algorithm, to form the hypothesis function (mostly polynomial regression with a cross validation set to get the most optimum degree). If this turns out to be a success then we plan to extend a similar prediction method for other companies as well.
+
+
+
