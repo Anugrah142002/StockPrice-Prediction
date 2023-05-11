@@ -7,7 +7,7 @@ The tweet data is taken over a period of 9 days only because of the restrictions
 # Dataset
 To obtain the required Tweets, we first applied for Twitter Developer Access. Then, with the keys provided, we set up our Twitter API. We created an authentication object and an API object. After authenticating credentials, we were ready to extract the required data.
 
-We imported the tweepy library to access the required data. We used the Cursor object and the api.search function to extract tweets which contain a specific hashtag (in our case: #HDFC). We extracted the tweets as well as the timestamps at which they were created.
+We imported the tweepy library to access the required data. We used the Cursor object and the api.search function to extract tweets which contain a specific hashtag (in our case: #ITC). We extracted the tweets as well as the timestamps at which they were created.
 
 The daily stock prices of the company(historical data) were obtained using the yfinance library for the same time period over which the tweets were collected. The company was selected by specifying the ticker(hdfcbank.ns in our case).
 
@@ -18,3 +18,12 @@ Stock data from the yahoo finance(throughAPI) provided us with certain heads of 
 
     Formulae used:                  HLPCT = (High-Low)/High
                                       PCTchange = (Close-Open)/Open
+
+Another concern was of stock data for the days when markets were closed like weekends and holidays. So we went for an average value (of each head) of a previous day and the next day and used that as our data for the missing day. Also we used Adjusted Close values instead of normal closing values of stock prices as they provide a better insight into the stock’s current status after new company offerings etc.
+
+# Twitter API and Data Preprocessing
+To preprocess the relevant data in order to make it suitable for sentiment analysis, we removed mentions, hashtags, hyperlinks and ‘RT’ separately using the re library (re.sub() function to be exact) to replace redundant characters . All this was enclosed in a CleanTxt() function that we defined.
+
+We also created a word cloud using the WordCloud library to get a visual representation of the most frequently used words in the relevant tweets. This helped better understand what the relevant words of the sentiment analysis were.
+
+![image](https://github.com/Anugrah142002/StockPrice-Prediction/assets/96532336/fd50a871-459e-4153-b89f-2f41a98a4a50)
